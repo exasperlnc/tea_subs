@@ -4,6 +4,6 @@ class Subscription < ApplicationRecord
   
   validates_presence_of :title
   validates_presence_of :price
-  validates_presence_of :status
+  validates_inclusion_of :status, in: [true, false]
   validates_presence_of :frequency
 end
