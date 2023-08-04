@@ -7,6 +7,11 @@ class Api::V0::SubscriptionsController < ApplicationController
     render json: SubscriptionSerializer.new(sub)
   end
 
+  def update
+    sub = Subscription.find_by(params[:user_id], params[:tea_id])
+    SubscriptionFacade.new.cancel_subscription(sub)
+    render json: SubscriptionSerializer.new(sub) 
+  end
 
   private 
 
