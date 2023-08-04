@@ -3,10 +3,15 @@ class Api::V0::SubscriptionsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :error_response
   
   def create
-    sub = SubscriptionFacade.new.create_subscription(params[:user_id], params[:tea_id], params[:frequency])
+    sub = SubscriptionFacade.new.create_subscription(params[:customer_id], params[:tea_id], params[:frequency])
     render json: SubscriptionSerializer.new(sub)
   end
 
+  def update
+    sub = Subscription.find_by(params[:customer_id], params[:tea_id])
+    SubscriptionFacade.new.cancel_subscription(sub)
+    render json: SubscriptionSerializer.new(sub) 
+  end
 
   private 
 
