@@ -12,3 +12,4 @@
 - remembered validates_presence_of doesn't like the "false" boolean
 - Creating a Subscription requires frequency in the request, but not the price (assuming price data can be stored on the backend, for security)
 - Extension could be creating an algorithm to calculate price on the back end based on requested frequency and market value of a tea
+- Decided to use Params instead of requests coming in as JSON, could be a fun refactor 
